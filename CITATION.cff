@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite it as below."
+title: "L1-retrotranscriptome_Melanoma: Locus-specific LINE-1 expression analysis in melanoma under stress"
+type: software
+authors:
+  - family-names: "Aasif"
+    given-names: ""
+repository-code: "https://github.com/aasifstrikes/L1-retrotranscriptome_Melanoma"
+license: MIT
+version: 1.0.0
+date-released: "2026-02-16"
+keywords:
+  - LINE-1
+  - L1
+  - retrotransposon
+  - RNA-seq
+  - Telescope
+  - melanoma
+  - hg38
+  - differential expression
