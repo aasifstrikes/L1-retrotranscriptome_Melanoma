@@ -1,74 +1,128 @@
-**L1 locus-specific expression analysis in melanoma under stress**
+**L1-retrotranscriptome_Melanoma**
+Locus-specific LINE-1 expression analysis in melanoma under stress
+**Overview**
 
-This repository contains the scripts, annotations, and analysis workflows used to study locus-specific LINE-1 (L1) retrotransposon expression in human melanocytes and melanoma (SK-MEL-28) cells under nutrient-deprivation stress. 
+This repository contains the computational workflow, annotation files, and statistical analyses used to investigate locus-specific LINE-1 (L1) retrotransposon expression in human melanocytes and SK-MEL-28 melanoma cells under nutrient-deprivation stress.
 
-The analysis focuses on resolving multi-mapping RNA-seq reads and quantifying L1 expression at individual genomic loci using a probabilistic framework. 
+Transposable elements, particularly L1 retrotransposons, constitute a substantial fraction of the human genome and are typically epigenetically repressed. Cellular stress and malignant transformation can relieve this repression, resulting in locus-specific activation.
 
- 
+This project applies probabilistic multi-mapping resolution to quantify L1 expression at single-locus resolution and compare transcriptional patterns between normal and tumor-derived cells.
 
-**Project overview**
+**Study Objectives**
 
-Transposable elements, particularly LINE-1 (L1) retrotransposons, constitute a large fraction of the human genome and are normally epigenetically repressed. Cellular stress and malignant transformation can relieve this repression, leading to locus-specific retrotransposon activation. 
+Quantify expression of full-length L1 elements at individual genomic loci
 
-In this project, RNA-seq data from primary melanocytes and serum-starved melanoma cells were analysed to: 
+Identify differentially expressed L1 loci between melanocytes and serum-starved melanoma cells
 
-    Quantify L1 expression at individual genomic loci 
+Assess chromosomal enrichment of L1 loci relative to genome size
 
-    Identify differentially expressed L1 elements between conditions 
+Visualize representative loci to distinguish locus-specific transcription from host gene transcription
 
-    Assess chromosomal distribution and enrichment of L1 loci 
+**Experimental Context**
 
-    Visualise representative loci using IGV 
+RNA-seq data were generated from:
 
- 
+Primary human melanocytes (control condition)
 
-**Software and environment**
+SK-MEL-28 melanoma cells subjected to serum starvation (nutrient-deprivation stress)
 
-Analyses were performed on Linux using the following tools: 
+All wet-lab procedures were performed externally; this repository contains only the bioinformatic analysis workflow.
 
-    Bowtie2 – read alignment 
+**Computational Workflow**
 
-    Samtools – alignment processing 
+The analysis pipeline consists of the following stages:
 
-    Telescope – locus-specific retrotransposon quantification 
+Read Alignment
+Paired-end RNA-seq reads aligned to hg38 using Bowtie2 with multi-mapping retention enabled.
 
-    DESeq2 – differential expression analysis 
+Alignment Processing
+SAM/BAM processing using Samtools.
 
-    R – statistical analysis and plotting 
+Locus-Specific Quantification
+Telescope applied to probabilistically assign multi-mapping reads to their most likely genomic L1 locus using an Expectation–Maximization algorithm.
 
-    IGV – visualisation of genomic loci 
+Normalization and Differential Expression
 
- 
+TPM calculation via custom Python script
 
-**Reference genome and annotations**
+Differential expression analysis using DESeq2
 
-    Human reference genome: hg38 
+Multiple testing correction via Benjamini–Hochberg FDR
 
-    Retrotransposon annotations derived from RepeatMasker 
+Chromosomal Enrichment Analysis
+Observed L1 locus counts per chromosome compared against genome-proportional expectations using chi-squared tests.
 
-    Custom annotation file generated for this study: 
+IGV Visualization
+Selected loci inspected to evaluate read coverage boundaries and distinguish autonomous L1 transcription from host gene co-transcription.
 
-l1_only_with_coords_updated.gtf 
+**Software Environment**
 
-Contains curated full-length LINE-1 loci with updated genomic coordinates. 
+Analysis performed on Linux using:
 
- 
+Bowtie2
 
-**Repository structure**
-. 
-├── annotations/ 
-│   └── l1_only_with_coords_updated.gtf 
-├── scripts/ 
-│   ├── tpm.py 
-│   ├── deseq2_analysis.R 
-│   └── chromosomal_enrichment.R 
-├── results/ 
-│   ├── differential_expression_tables/ 
-│   ├── chromosomal_analysis/ 
-│   └── figures/ 
-├── igv/ 
-│   ├── igv_batch_files/ 
-│   └── snapshots/ 
-└── README.md 
- 
-**NB: If you are attempting this trial using the original primary vmelanocytes(10%) and SKMEL28 (1%), a minimum disk space of around 1tb is recommended.**
+Samtools
+
+Telescope
+
+Python 3
+
+R (DESeq2, pvclust, ggplot2)
+
+IGV
+Reproducibility is supported through script-based automation of alignment, quantification, and statistical analysis.
+
+**Reference Genome and Annotation**
+
+Human reference genome: hg38
+
+RepeatMasker-derived retrotransposon annotations
+
+Custom curated annotation file:
+
+annotations/l1_only_with_coords_updated.gtf
+
+
+This file contains full-length L1 loci with updated genomic coordinates to ensure locus-specific quantification.
+
+**Repository Structure**
+.
+├── annotations/
+│   └── l1_only_with_coords_updated.gtf
+├── scripts/
+│   ├── tpm.py
+│   ├── deseq2_analysis.R
+│   └── chromosomal_enrichment.R
+├── results/
+│   ├── differential_expression_tables/
+│   ├── chromosomal_analysis/
+│   └── figures/
+├── igv/
+│   ├── igv_batch_files/
+│   └── snapshots/
+└── README.md
+
+**Key Analytical Components**
+Differential Expression
+
+951 L1 loci were identified as differentially expressed under defined statistical thresholds (FDR < 0.05; |log₂FC| ≥ defined cutoff).
+
+**Chromosomal Distribution**
+
+Both total and differentially expressed L1 loci deviate significantly from genome-proportional expectations, indicating non-random chromosomal distribution patterns.
+**
+Locus-Specific Validation**
+
+IGV inspection confirms that selected loci exhibit discrete transcriptional boundaries, supporting locus-specific expression rather than purely host gene-driven transcription.
+
+**Reproducibility Notes**
+
+Full reproduction of the alignment and quantification pipeline requires substantial storage capacity (≥1 TB recommended).
+
+Raw FASTQ files are not included in this repository.
+
+**Citation**
+
+If using this workflow or annotation strategy, please cite:
+
+Bendall ML et al. (2019). Telescope: Characterization of the retrotranscriptome by accurate estimation of transposable element expression. PLOS Computational Biology.
