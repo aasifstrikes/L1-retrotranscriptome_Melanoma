@@ -1,0 +1,10 @@
+### Comparative Threshold Analysis
+
+Threshold-based ranking of highly expressed L1 loci was evaluated using top 10, 15 and 20 element subsets.
+
+Figures in `results/figures/comparative_threshold_analysis/` include:
+
+- Faceted bar plots comparing L1 counts across S70–S120 sample pairs.
+- Venn diagrams illustrating overlap of ranked L1 loci between replicate samples ((B1R1 vs B1R2),(B2R1 vs B2R2), (B3R1 vs B3R2)).
+
+These analyses assess ranking stability and reproducibility across biological replicates.
