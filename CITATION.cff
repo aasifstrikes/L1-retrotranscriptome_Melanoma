@@ -8,6 +8,7 @@ authors:
     orcid: "https://orcid.org/0009-0002-3340-2578"
 repository-code: "https://github.com/aasifstrikes/L1-retrotranscriptome_Melanoma"
 url: "https://github.com/aasifstrikes/L1-retrotranscriptome_Melanoma"
+doi: "10.5281/zenodo.18843127"
 license: MIT
 version: "1.0.0"
 date-released: "2026-03-03"
