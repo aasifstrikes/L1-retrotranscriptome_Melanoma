@@ -3,9 +3,15 @@ message: "If you use this repository, please cite it as below."
 title: "L1-retrotranscriptome_Melanoma: Locus-specific LINE-1 expression analysis in melanoma under stress"
 type: software
 authors:
-  - family-names: "Aasif"
-    given-names: ""
+  - family-names: "Kolliyil Abdul Rasheed"
+    given-names: "Mohamed Aasif"
+    orcid: "https://orcid.org/0009-0002-3340-2578"
 repository-code: "https://github.com/aasifstrikes/L1-retrotranscriptome_Melanoma"
+url: "https://github.com/aasifstrikes/L1-retrotranscriptome_Melanoma"
 license: MIT
-version: 1.0.0
-date-released: "2026-02-16"
+version: "1.0.0"
+date-released: "2026-03-03"
+abstract: >
+  A locus-specific computational framework for quantifying LINE-1 retrotransposon 
+  expression in melanoma under nutrient-deprivation stress using probabilistic 
+  multi-mapping resolution and differential expression analysis.
