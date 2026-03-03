@@ -7,7 +7,7 @@
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Version](https://img.shields.io/badge/version-v1.0.0-brightgreen)
 ![Status](https://img.shields.io/badge/status-dissertation%20complete-success)
-![DOI](https://img.shields.io/badge/DOI-pending-lightgrey)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18843127.svg)](https://doi.org/10.5281/zenodo.18843127)
 Locus-specific LINE-1 expression analysis in melanoma under stress
 
 ## Overview
