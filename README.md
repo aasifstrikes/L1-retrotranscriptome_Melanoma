@@ -20,21 +20,17 @@ This project applies probabilistic multi-mapping resolution to quantify L1 expre
 
 ## Study Objectives
 
-Quantify expression of full-length L1 elements at individual genomic loci
-
-Identify differentially expressed L1 loci between melanocytes and serum-starved melanoma cells
-
-Assess chromosomal enrichment of L1 loci relative to genome size
-
-Visualize representative loci to distinguish locus-specific transcription from host gene transcription
+- Quantify expression of full-length L1 elements at individual genomic loci
+- Identify differentially expressed L1 loci between melanocytes and serum-starved melanoma cells
+- Assess chromosomal enrichment of L1 loci relative to genome size
+- Visualize representative loci to distinguish locus-specific transcription from host gene transcription
 
 ## Experimental Context
 
 RNA-seq data were generated from:
 
-Primary human melanocytes (control condition)
-
-SK-MEL-28 melanoma cells subjected to serum starvation (nutrient-deprivation stress)
+- Primary human melanocytes (control condition)
+- SK-MEL-28 melanoma cells subjected to serum starvation (nutrient-deprivation stress)
 
 All wet-lab procedures were performed externally; this repository contains only the bioinformatic analysis workflow.
 
@@ -42,44 +38,37 @@ All wet-lab procedures were performed externally; this repository contains only 
 
 The analysis pipeline consists of the following stages:
 
-Read Alignment
+**Read Alignment**
 Paired-end RNA-seq reads aligned to hg38 using Bowtie2 with multi-mapping retention enabled.
 
-Alignment Processing
+**Alignment Processing**
 SAM/BAM processing using Samtools.
 
-Locus-Specific Quantification
+**Locus-Specific Quantification**
 Telescope applied to probabilistically assign multi-mapping reads to their most likely genomic L1 locus using an Expectation–Maximization algorithm.
 
-Normalization and Differential Expression
+**Normalization and Differential Expression**
+- TPM calculation via custom Python script
+- Differential expression analysis using DESeq2
+- Multiple testing correction via Benjamini–Hochberg FDR
 
-TPM calculation via custom Python script
-
-Differential expression analysis using DESeq2
-
-Multiple testing correction via Benjamini–Hochberg FDR
-
-Chromosomal Enrichment Analysis
+**Chromosomal Enrichment Analysis**
 Observed L1 locus counts per chromosome compared against genome-proportional expectations using chi-squared tests.
 
-IGV Visualization
+**IGV Visualization**
 Selected loci inspected to evaluate read coverage boundaries and distinguish autonomous L1 transcription from host gene co-transcription.
 
 ## Software Environment
 
 Analysis performed on Linux using:
 
-Bowtie2
+- Bowtie2
+- Samtools
+- Telescope
+- Python 3
+- R (DESeq2, pvclust, ggplot2)
+- IGV
 
-Samtools
-
-Telescope
-
-Python 3
-
-R (DESeq2, pvclust, ggplot2)
-
-IGV
 Reproducibility is supported through script-based automation of alignment, quantification, and statistical analysis.
 
 ## Reference Genome and Annotation
@@ -96,6 +85,8 @@ annotations/l1_only_with_coords_updated.gtf
 This file contains full-length L1 loci with updated genomic coordinates to ensure locus-specific quantification.
 
 ## Repository Structure
+
+```
 .
 ├── annotations/
 │   └── l1_only_with_coords_updated.gtf
@@ -111,19 +102,21 @@ This file contains full-length L1 loci with updated genomic coordinates to ensur
 │   ├── igv_batch_files/
 │   └── snapshots/
 └── README.md
+```
+
 ## File Descriptions
 
-## Annotations
+### Annotations
 - `annotations/l1_only_with_coords_updated.gtf`  
   Curated full-length LINE-1 (L1) loci derived from RepeatMasker (hg38).  
   Used as input for Telescope to enable locus-specific retrotransposon quantification.
 
-## Scripts
+### Scripts
 - `tpm.py` – Calculation of TPM-normalised expression values.
 - `deseq2_analysis.R` – Differential expression analysis using DESeq2.
 - `chromosomal_enrichment.R` – Statistical assessment of chromosomal distribution and enrichment of L1 loci.
 
-## Results
+### Results
 - `results/tables/` – Processed differential expression tables and statistical test outputs.
 - `results/figures/` – MA plots, clustering plots, enrichment plots, and other publication-ready figures.
 
@@ -158,7 +151,7 @@ Full pipeline reproduction requires:
 - R (DESeq2 and required packages)
 - Python 3
 
-Full reproduction of the alignment and quantification pipeline requires substantial storage capacity (≥1 TB recommended).
+Substantial storage capacity is required for full alignment and quantification (≥ 1 TB recommended).
 
 ## Citation
 
